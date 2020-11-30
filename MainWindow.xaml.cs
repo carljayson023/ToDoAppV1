@@ -25,19 +25,21 @@ namespace ToDoApp_v1._2
     /// </summary>
     public partial class MainWindow : Window
     {
-        //private readonly DataDbContext _context = new DataDbContext();
-        //DataController _datacontroller = new DataController();
-        //public readonly App _container;
-        private readonly DataDbContext _context;
-        private readonly DataController _datacontroller;
-        //private CollectionViewSource datalistViewSource;
-        public MainWindow(DataDbContext context, DataController datacontroller)
-        {
+         
 
+        DataDbContext _context;
+        DataController _datacontroller = new DataController();
+        //public readonly App _container;
+        //private readonly DataDbContext _context;
+       
+        //private CollectionViewSource datalistViewSource;
+        public MainWindow(DataDbContext context)
+        {
             _context = context;
-            
+            //_context = context;
+
             InitializeComponent();
-            _datacontroller = datacontroller;
+            
             //datalistViewSource =
             //(CollectionViewSource)FindResource(nameof(datalistViewSource));
         }
@@ -51,7 +53,7 @@ namespace ToDoApp_v1._2
             //datalistViewSource.Source = _context.Datalists.Local.ToObservableCollection();
             //listDataGrid.AutoGenerateColumns = false;
 
-            listDataGrid.ItemsSource = _context.Datalists.Local.ToObservableCollection();
+            //listDataGrid.ItemsSource = _context.Datalists.Local.ToObservableCollection();
             listDataGrid.ItemsSource = _datacontroller.GetAllList();
 
 

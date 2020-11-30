@@ -6,7 +6,8 @@ using ToDoApp_v1._2.Model;
 
 namespace ToDoApp_v1._2.Controllers
 {
-    class DataController // --------------------------------------------->> Overloading Ex.
+    class DataController : IDataController
+    // --------------------------------------------->> Overloading Ex.
     {
         private readonly DataDbContext _context = new DataDbContext();
 

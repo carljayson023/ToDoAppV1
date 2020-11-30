@@ -13,12 +13,32 @@ using ToDoApp_v1._2.Repository;
 
 namespace ToDoApp_v1._2
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
+
     public partial class App : Application
     {
-        
+        //private void OnStartup(object sender, StartupEventArgs e)
+        //{
+        //    var builder = new ContainerBuilder();
+        //    builder.RegisterType<DataDbContext>().AsSelf();
+        //    builder.RegisterType<ItemController>().As<IItemController>();
+        //    builder.RegisterType<DatalistRepository>().As<IDetalistRepository>();
+        //    //builder.RegisterType<Repository>().AsImplementedInterfaces().InstancePerLifetimeScope();
+
+        //    // Add the MainWindowclass and later resolve
+
+        //    builder.RegisterType<MainWindow>().AsSelf();
+
+        //    var container = builder.Build();
+
+        //    using (var scope = container.BeginLifetimeScope())
+        //    {
+        //        var window = scope.Resolve<MainWindow>();
+        //        window.Show();
+        //    }
+
+        //    return builder.Build();
+        //}
+
         public static IContainer Configure()
         {
             var builder = new ContainerBuilder();
@@ -26,13 +46,14 @@ namespace ToDoApp_v1._2
             builder.RegisterType<ItemController>().As<IItemController>();
             builder.RegisterType<ListController>().As<IListController>();
             builder.RegisterType<DatalistRepository>().As<IDetalistRepository>();
+            builder.RegisterType<DataController>().As<IDataController>();
             builder.RegisterType<MainWindow>().AsSelf();
             builder.RegisterType<DataDbContext>().AsSelf();
 
             //builder.RegisterAssemblyTypes(Assembly.Load(nameof(DemoLibrary)))
             //    .Where(t => t.Namespace.Contains("Utilities"))
             //    .As(t => t.GetInterfaces().FirstOrDefault(i => i.Name == "I" + t.Name));
-            
+
             return builder.Build();
 
 
@@ -48,6 +69,7 @@ namespace ToDoApp_v1._2
                 mainWindows.Show();
             }
         }
+
 
     }
 }
