@@ -14,16 +14,14 @@ using ToDoApp_v1._2.Model;
 
 namespace ToDoApp_v1._2
 {
-    /// <summary>
-    /// Interaction logic for CreateItemForm.xaml
-    /// </summary>
+   
     struct Information
     {
         public int ID;
     }
     public partial class CreateItemForm : Window
     {
-        //------ contructor
+        
         public int _ItemId { get; set; }
         public string _ItemNames { get; set; }
         public string _ItemDetail { get; set; }

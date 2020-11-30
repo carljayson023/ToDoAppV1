@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using ToDoApp_v1._2.Controllers;
 using ToDoApp_v1._2.Model;
+using Autofac;
 
 namespace ToDoApp_v1._2
 {
@@ -24,16 +25,19 @@ namespace ToDoApp_v1._2
     /// </summary>
     public partial class MainWindow : Window
     {
-        private readonly DataDbContext _context = new DataDbContext();
-        DataController _datacontroller = new DataController();
-
+        //private readonly DataDbContext _context = new DataDbContext();
+        //DataController _datacontroller = new DataController();
+        //public readonly App _container;
+        private readonly DataDbContext _context;
+        private readonly DataController _datacontroller;
         //private CollectionViewSource datalistViewSource;
-        public MainWindow()
+        public MainWindow(DataDbContext context, DataController datacontroller)
         {
+
+            _context = context;
+            
             InitializeComponent();
-            
-            
-            
+            _datacontroller = datacontroller;
             //datalistViewSource =
             //(CollectionViewSource)FindResource(nameof(datalistViewSource));
         }

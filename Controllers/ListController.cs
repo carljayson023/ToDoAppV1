@@ -9,7 +9,7 @@ using ToDoApp_v1._2.Model;
 
 namespace ToDoApp_v1._2.Controllers
 {
-    public class ListController
+    public class ListController : IListController
     {
         private readonly DataDbContext _context = new DataDbContext();
         public string AddList_Class(Datalist data)
@@ -36,7 +36,8 @@ namespace ToDoApp_v1._2.Controllers
                 _context.SaveChanges();
                 return $"{data.Name} Has Successfully Deleted";
             }
-            catch {
+            catch
+            {
                 return "Failed To Delete.!";
             }
         }

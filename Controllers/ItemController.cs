@@ -6,7 +6,7 @@ using ToDoApp_v1._2.Model;
 
 namespace ToDoApp_v1._2.Controllers
 {
-    class ItemController
+    class ItemController : IItemController
     {
         private readonly DataDbContext _context = new DataDbContext();
         public string AddItem_Class(Itemlist data)
@@ -24,7 +24,7 @@ namespace ToDoApp_v1._2.Controllers
             return "Update Successfully!";
         }
 
-        public string DeleteItem_Class(Itemlist data) 
+        public string DeleteItem_Class(Itemlist data)
         {
             try
             {
@@ -32,7 +32,8 @@ namespace ToDoApp_v1._2.Controllers
                 _context.SaveChanges();
                 return data.Name + "Successfuly Deleted.";
             }
-            catch  {
+            catch
+            {
                 return "Item Failed to Delete.!";
             }
         }
