@@ -17,6 +17,8 @@ using System.Windows.Shapes;
 using ToDoApp_v1._2.Controllers;
 using ToDoApp_v1._2.Model;
 using Autofac;
+using System.Data.SQLite;
+using ToDoApp_v1._2.Database;
 
 namespace ToDoApp_v1._2
 {
@@ -25,17 +27,22 @@ namespace ToDoApp_v1._2
     /// </summary>
     public partial class MainWindow : Window
     {
-         
+        
+
+
+
 
         DataDbContext _context;
         DataController _datacontroller = new DataController();
         //public readonly App _container;
         //private readonly DataDbContext _context;
-       
+
         //private CollectionViewSource datalistViewSource;
+        
         public MainWindow(DataDbContext context)
         {
             _context = context;
+            
             //_context = context;
 
             InitializeComponent();
@@ -177,6 +184,8 @@ namespace ToDoApp_v1._2
         public void View_ItemData(object s, RoutedEventArgs e) // View The Detail Of the Item
         {
 
+            ConnectDB Db_Context  = new ConnectDB();
+            MessageBox.Show(Db_Context.GetAll("Datalists").ToString());
             /*var ListData = (s as FrameworkElement).DataContext as Itemlist;  
                 _context.Datalists.Find(ListData.DatalistId).Name.ToString()   // -------------> example find or Search
             */

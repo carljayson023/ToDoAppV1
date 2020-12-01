@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data.SQLite;
 using System.Linq;
 using System.Text;
 using ToDoApp_v1._2.Model;
@@ -14,6 +15,9 @@ namespace ToDoApp_v1._2.Controllers
         private readonly DataDbContext _context = new DataDbContext();
         public string AddList_Class(Datalist data)
         {
+            
+
+
             _context.Datalists.Add(data);
             //_context.Datalists.Find("");
             _context.SaveChanges();
