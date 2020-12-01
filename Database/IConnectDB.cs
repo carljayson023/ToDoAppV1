@@ -8,7 +8,7 @@ namespace ToDoApp_v1._2.Database
     {
         SQLiteConnection DbConnection();
         List<string> GetAll(string tableName);
-        List<string> GetItem(int id);
+        List<Itemlist> GetItem(int id);
         string AddData(string data);
         string AddDataItem(string data);
         string DeleteData(string data);

@@ -61,10 +61,13 @@ namespace ToDoApp_v1._2
             //listDataGrid.AutoGenerateColumns = false;
 
             //listDataGrid.ItemsSource = _context.Datalists.Local.ToObservableCollection();
+
             listDataGrid.ItemsSource = _datacontroller.GetAllList();
 
-
-            itemsDataGrid.ItemsSource = _datacontroller.GetItem(ListDataId);
+            ConnectDB db_context = new ConnectDB();
+            db_context.GetItem(1);
+            itemsDataGrid.ItemsSource = db_context.GetItem(1);
+            //itemsDataGrid.ItemsSource = _datacontroller.GetItem(ListDataId);
             listDataGrid.Items.Refresh();
             itemsDataGrid.Items.Refresh();
             // bind to the source
@@ -72,6 +75,7 @@ namespace ToDoApp_v1._2
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            
             _context.Database.EnsureCreated();
             // load the entities into EF Core
             GetList();
@@ -161,6 +165,8 @@ namespace ToDoApp_v1._2
 
             listDataGrid.Visibility = Visibility.Hidden;
             itemsDataGrid.Visibility = Visibility.Visible;
+
+           
 
             var ListData = (s as FrameworkElement).DataContext as Datalist;
             ListDataId = ListData.DatalistId; //-------------------------------> send id to createItemForm

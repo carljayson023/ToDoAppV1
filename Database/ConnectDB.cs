@@ -89,10 +89,11 @@ namespace ToDoApp_v1._2.Database
             return listFile;
         }
 
-        public List<string> GetItem(int id) //get by ID
+        public List<Itemlist> GetItem(int id) //get by ID
         {
-            List<string> listFile = new List<string>();
+            var listFile = new List<Itemlist>();
             SQLiteConnection connect = DbConnection();
+            connect.Open();
             string Query = "SELECT * From Itemlists Where DatalistId = " + id;
 
             SQLiteCommand cmd = new SQLiteCommand(Query, connect);
@@ -100,9 +101,17 @@ namespace ToDoApp_v1._2.Database
 
             while (rd.Read())
             {
-                try
-                { listFile.Add(Convert.ToString(rd["FileName"])); }
-                catch { }
+                //try
+                //{ listFile.Add(Convert.ToString(rd["FileName"])); }
+                //catch { }
+                listFile.Add(new Itemlist()
+                {
+                    ItemlistId = rd.GetInt32(0),
+                    Name = rd.GetString(1),
+                    Detailed = rd.GetString(2),
+                    Status = rd.GetString(3)
+                    // etc... (0, 1 refer to the column index)
+                });
             }
             connect.Close();
             return listFile;
@@ -115,7 +124,7 @@ namespace ToDoApp_v1._2.Database
             string name = datas[1];
             string des = datas[2];
             SQLiteConnection connect = DbConnection();
-
+            connect.Open();
             SQLiteCommand cmd = new SQLiteCommand(connect);
             cmd.CommandText = "UPDATE Datalists SET Name = @name , Description = @des WHERE DatalistId = " + id;
             cmd.Parameters.AddWithValue("@name", name);
@@ -123,6 +132,7 @@ namespace ToDoApp_v1._2.Database
 
             cmd.Prepare();
             cmd.ExecuteNonQuery();
+            connect.Close();
             return "Done Update";
         }
 
