@@ -34,9 +34,10 @@ namespace ToDoApp_v1._2
         Information info;
         //ItemController _itemController = new ItemController();
 
-        ConnectDB _connectDb = new ConnectDB();
-        public CreateItemForm()
+        IConnectDB _connectDb;
+        public CreateItemForm(IConnectDB condb)
         {
+            _connectDb = condb;
             InitializeComponent();
         }
         private void Cancel(object s, RoutedEventArgs e) // Cancel Or Close Windows Form
@@ -64,6 +65,8 @@ namespace ToDoApp_v1._2
                     };
 
                     //MessageBox.Show(_itemController.UpdateItem_Class(ItemToUpdate)); 
+                   
+                    
                     MessageBox.Show(_connectDb.UpdateDataItem(ItemToUpdate));
                 }
                 else

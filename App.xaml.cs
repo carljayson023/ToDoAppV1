@@ -45,8 +45,8 @@ namespace ToDoApp_v1._2
         {
             var builder = new ContainerBuilder();
 
-            builder.RegisterType<ItemController>().As<IItemController>();
-            builder.RegisterType<ListController>().As<IListController>();
+            //builder.RegisterType<ItemController>().As<IItemController>();
+            //builder.RegisterType<ListController>().As<IListController>();
             builder.RegisterType<DatalistRepository>().As<IDetalistRepository>();
             builder.RegisterType<DataController>().As<IDataController>();
             builder.RegisterType<MainWindow>().AsSelf();
@@ -55,9 +55,13 @@ namespace ToDoApp_v1._2
             builder.RegisterType<DataDbContext>().AsSelf();
             builder.RegisterType<ConnectDB>().As<IConnectDB>();
 
-            //builder.RegisterAssemblyTypes(Assembly.Load(nameof(DemoLibrary)))
-            //    .Where(t => t.Namespace.Contains("Utilities"))
-            //    .As(t => t.GetInterfaces().FirstOrDefault(i => i.Name == "I" + t.Name));
+            builder.RegisterAssemblyTypes()
+                .Where(t => t.Namespace.Contains("Model"))
+                .AsSelf();
+
+            builder.RegisterAssemblyTypes()
+                .Where(t => t.Namespace.Contains("Controllers"))
+                .As(t => t.GetInterfaces().FirstOrDefault(i => i.Name == "I" + t.Name));
 
             return builder.Build();
 

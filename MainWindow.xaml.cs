@@ -33,7 +33,7 @@ namespace ToDoApp_v1._2
 
 
         DataDbContext _context;
-        DataController _datacontroller = new DataController();
+        //DataController _datacontroller = new DataController();
         ConnectDB db_context = new ConnectDB();
         //public readonly App _container;
         //private readonly DataDbContext _context;
@@ -99,10 +99,18 @@ namespace ToDoApp_v1._2
         
         public void AddItemform(object s, RoutedEventArgs e) // Add Item : open New windows to add new item
         {
-            
-            CreateItemForm win3 = new CreateItemForm();
-            win3._ItemDataListId = ListDataId;
-            win3.ShowDialog();
+            var container = App.Configure();
+
+            using (var scope = container.BeginLifetimeScope())
+            {
+                var winItem = scope.Resolve<CreateItemForm>();
+                winItem._ItemDataListId = ListDataId;
+                winItem.ShowDialog();
+            }
+
+            //CreateItemForm win3 = new CreateItemForm();
+            //win3._ItemDataListId = ListDataId;
+            //win3.ShowDialog();
 
             GetList();
         }
@@ -123,16 +131,30 @@ namespace ToDoApp_v1._2
         
         public void SelectItemToEdit(object s, RoutedEventArgs e) // Edit: open to edit item
         {
-
             var ItemData = (s as FrameworkElement).DataContext as Itemlist;
+            //var x = App.Configure();
+            //var f = x.
+            var container = App.Configure();
+
+            using (var scope = container.BeginLifetimeScope())
+            {
+                var winItem = scope.Resolve<CreateItemForm>();
+                winItem._ItemId = ItemData.ItemlistId;
+                winItem._ItemNames = ItemData.Name;
+                winItem._ItemDetail = ItemData.Detailed;
+                winItem._ItemStatuz = ItemData.Status;
+                winItem._ItemDataListId = ItemData.DatalistId;
+                winItem.ShowDialog();
+            }
             
-            CreateItemForm winItem = new CreateItemForm();
-            winItem._ItemId = ItemData.ItemlistId;
-            winItem._ItemNames = ItemData.Name;
-            winItem._ItemDetail = ItemData.Detailed;
-            winItem._ItemStatuz = ItemData.Status;
-            winItem._ItemDataListId = ItemData.DatalistId;
-            winItem.ShowDialog();
+            
+            //CreateItemForm winItem = new CreateItemForm();
+            //winItem._ItemId = ItemData.ItemlistId;
+            //winItem._ItemNames = ItemData.Name;
+            //winItem._ItemDetail = ItemData.Detailed;
+            //winItem._ItemStatuz = ItemData.Status;
+            //winItem._ItemDataListId = ItemData.DatalistId;
+            //winItem.ShowDialog();
             GetList();
 
 
