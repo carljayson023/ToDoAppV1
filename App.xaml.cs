@@ -8,6 +8,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using ToDoApp_v1._2.Controllers;
+using ToDoApp_v1._2.Database;
 using ToDoApp_v1._2.Model;
 using ToDoApp_v1._2.Repository;
 
@@ -49,7 +50,10 @@ namespace ToDoApp_v1._2
             builder.RegisterType<DatalistRepository>().As<IDetalistRepository>();
             builder.RegisterType<DataController>().As<IDataController>();
             builder.RegisterType<MainWindow>().AsSelf();
+            builder.RegisterType<CreateItemForm>().AsSelf();
+            builder.RegisterType<CreateListForm>().AsSelf();
             builder.RegisterType<DataDbContext>().AsSelf();
+            builder.RegisterType<ConnectDB>().As<IConnectDB>();
 
             //builder.RegisterAssemblyTypes(Assembly.Load(nameof(DemoLibrary)))
             //    .Where(t => t.Namespace.Contains("Utilities"))

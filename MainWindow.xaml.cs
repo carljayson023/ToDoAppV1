@@ -135,6 +135,8 @@ namespace ToDoApp_v1._2
             winItem.ShowDialog();
             GetList();
 
+
+
         }
         public void DeleteList(object s, RoutedEventArgs e) // -------------------> DELETE data in List
         {
