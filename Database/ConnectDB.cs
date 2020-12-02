@@ -169,7 +169,7 @@ namespace ToDoApp_v1._2.Database
             //string Query = "INSERT INTO Itemlists(Name, Detailed,Status,DatalistId) VALUES('" + datas[0] + "', '" + datas[1] + "',)";
             connect.Open();
             SQLiteCommand cmd = new SQLiteCommand(connect);
-            cmd.CommandText = "UPDATE Itemlists SET Name = @name , Detailed = @des, Status = @status WHERE DatalistId = " + id;
+            cmd.CommandText = "UPDATE Itemlists SET Name = @name , Detailed = @des, Status = @status WHERE ItemlistId = " + id;
             cmd.Parameters.AddWithValue("@name", name);
             cmd.Parameters.AddWithValue("@des", des);
             cmd.Parameters.AddWithValue("@status", status);
