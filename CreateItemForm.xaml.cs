@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Autofac;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -31,13 +32,13 @@ namespace ToDoApp_v1._2
 
         //private readonly DataDbContext _context = new DataDbContext();
 
-        Information info;
+        //Information info;
         //ItemController _itemController = new ItemController();
 
         IConnectDB _connectDb;
-        public CreateItemForm(IConnectDB condb)
+        public CreateItemForm(/*IConnectDB condb*/)
         {
-            _connectDb = condb;
+            //_connectDb = condb;
             InitializeComponent();
         }
         private void Cancel(object s, RoutedEventArgs e) // Cancel Or Close Windows Form
@@ -47,6 +48,9 @@ namespace ToDoApp_v1._2
 
         private void AddItem(object s, RoutedEventArgs e)  // Adding new item To the List
         {
+            var container = App.Configure();
+            var _connectDb = container.Resolve<IConnectDB>();
+
             string _ItemName = ItemName.Text;
             string _ItemDetailed = ItemDetailed.Text;
             string _ItemStatus = cbox_status.Text;
