@@ -34,11 +34,12 @@ namespace ToDoApp_v1._2
 
         DataDbContext _context;
         DataController _datacontroller = new DataController();
+        ConnectDB db_context = new ConnectDB();
         //public readonly App _container;
         //private readonly DataDbContext _context;
 
         //private CollectionViewSource datalistViewSource;
-        
+
         public MainWindow(DataDbContext context)
         {
             _context = context;
@@ -62,11 +63,11 @@ namespace ToDoApp_v1._2
 
             //listDataGrid.ItemsSource = _context.Datalists.Local.ToObservableCollection();
 
-            listDataGrid.ItemsSource = _datacontroller.GetAllList();
-
-            ConnectDB db_context = new ConnectDB();
-            db_context.GetItem(1);
-            itemsDataGrid.ItemsSource = db_context.GetItem(1);
+            //listDataGrid.ItemsSource = _datacontroller.GetAllList();
+            listDataGrid.ItemsSource = db_context.GetAll("Datalists");
+            
+            //db_context.GetItem();
+            itemsDataGrid.ItemsSource = db_context.GetItem(ListDataId);
             //itemsDataGrid.ItemsSource = _datacontroller.GetItem(ListDataId);
             listDataGrid.Items.Refresh();
             itemsDataGrid.Items.Refresh();

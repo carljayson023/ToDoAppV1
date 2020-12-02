@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using ToDoApp_v1._2.Controllers;
+using ToDoApp_v1._2.Database;
 using ToDoApp_v1._2.Model;
 
 namespace ToDoApp_v1._2
@@ -31,8 +32,9 @@ namespace ToDoApp_v1._2
         //private readonly DataDbContext _context = new DataDbContext();
 
         Information info;
-        ItemController _itemController = new ItemController();
- 
+        //ItemController _itemController = new ItemController();
+
+        ConnectDB _connectDb = new ConnectDB();
         public CreateItemForm()
         {
             InitializeComponent();
@@ -62,8 +64,9 @@ namespace ToDoApp_v1._2
                                         Status = _ItemStatus,
                                         DatalistId = _ItemDataListId
                     };
-                    
-                    MessageBox.Show(_itemController.UpdateItem_Class(ItemToUpdate)); 
+
+                    //MessageBox.Show(_itemController.UpdateItem_Class(ItemToUpdate)); 
+                    MessageBox.Show(_connectDb.UpdateDataItem(ItemToUpdate));
                 }
                 else
                 {
@@ -73,7 +76,8 @@ namespace ToDoApp_v1._2
                                                     Status = _ItemStatus, 
                                                     DatalistId = _ItemDataListId
                     };
-                    MessageBox.Show(_itemController.AddItem_Class(addingItem));
+                    //MessageBox.Show(_itemController.AddItem_Class(addingItem));
+                    MessageBox.Show(_connectDb.AddDataItem(addingItem));
                 }
                 this.Close();
             }

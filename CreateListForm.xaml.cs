@@ -13,6 +13,7 @@ using Microsoft.EntityFrameworkCore;
 using System.ComponentModel;
 using ToDoApp_v1._2.Model;
 using ToDoApp_v1._2.Controllers;
+using ToDoApp_v1._2.Database;
 
 namespace ToDoApp_v1._2
 {
@@ -43,7 +44,8 @@ namespace ToDoApp_v1._2
         public string _ListName { get; set; }
         public string _ListDescription { get; set; }
 
-        private readonly DataDbContext _context = new DataDbContext();
+        //private readonly DataDbContext _context = new DataDbContext();
+        private readonly ConnectDB _connectDb = new ConnectDB();
         Datalist Newlist = new Datalist();
         //----->> Class And Object
         ListController _listController = new ListController(); // Call and Set Controller for ADD UPDATE DELETE 
@@ -72,14 +74,14 @@ namespace ToDoApp_v1._2
                     };
                     //_listController._GetAllList();
                     //MessageBox.Show("Data has Successfuly Updated");
-                    MessageBox.Show(_listController.UpdateList_Class(updateDataList)); // Update Data by Manual
-
+                    //MessageBox.Show(_listController.UpdateList_Class(updateDataList)); // Update Data by Manual
+                    MessageBox.Show(_connectDb.UpdateData(updateDataList));
                 }
                 else
                 {
                     //MessageBox.Show(_listController.GetAllList().ToString());
-                    MessageBox.Show(_listController.AddList_Class(Newlist)); // Add Data by Binding
-
+                    //MessageBox.Show(_listController.AddList_Class(Newlist)); // Add Data by Binding
+                    MessageBox.Show(_connectDb.AddData(Newlist));
                 }
                 this.Close();
             }
