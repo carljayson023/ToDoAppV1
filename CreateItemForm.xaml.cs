@@ -46,8 +46,6 @@ namespace ToDoApp_v1._2
 
         private void AddItem(object s, RoutedEventArgs e)  // Adding new item To the List
         {
-            
-            
             string _ItemName = ItemName.Text;
             string _ItemDetailed = ItemDetailed.Text;
             string _ItemStatus = cbox_status.Text;
@@ -77,6 +75,7 @@ namespace ToDoApp_v1._2
                                                     DatalistId = _ItemDataListId
                     };
                     //MessageBox.Show(_itemController.AddItem_Class(addingItem));
+                    //MessageBox.Show(addingItem.Name+ "-"+ addingItem.Detailed);
                     MessageBox.Show(_connectDb.AddDataItem(addingItem));
                 }
                 this.Close();

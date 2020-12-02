@@ -5,8 +5,10 @@ using ToDoApp_v1._2.Abstract;
 
 namespace ToDoApp_v1._2.Model
 {
-    public class Datalist : BaseInfo //  ---> Inheritance
+    public class Datalist  //  ---> Inheritance
     {
+        public int DatalistId { get; set; }
+        public string Name { get; set; }
        
         public string Description { get; set; }
 
